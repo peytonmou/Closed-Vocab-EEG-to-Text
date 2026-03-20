@@ -1,51 +1,54 @@
-EEG-to-Text Decoding
+# EEG-to-Text Decoding: Imagined Speech & Silent Reading
 
-This repository provides implementations for EEG-to-Text decoding experiments using three deep learning models (EEGNet, NetTraST, and NiceEEG) under two paradigms (Silent Reading and Imagined Speech) and three evaluation settings (Within-Subject, Cross-Validation, and Leave-One-Subject-Out (LOSO)).
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+[![MNE](https://img.shields.io/badge/MNE-1.5+-green.svg)](https://mne.tools/)
 
-📁 Repository Structure
-.
-├── data.py        # Data loading and preprocessing
-├── models.py      # EEGNet, NetTraST, NiceEEG implementations
-├── metrics.py     # Evaluation metrics
-├── main.py        # Main training and evaluation script
-└── README.md
+## Overview
+This project develops deep learning models for decoding imagined speech and silent reading from 64-channel EEG signals. We collected and processed neural signals from 12 participants to evaluate multiple architectures under different validation schemes.
 
-Step 1: Download the dataset from Hugging Face:
-https://huggingface.co/datasets/peytonmou/EEG2Text
+**Key Achievement**: EEGNet achieved **27.05% test accuracy** on 10-class imagined speech decoding (12.5× above chance level of 10%).
 
-Using Git:
-git lfs install
-git clone https://huggingface.co/datasets/peytonmou/EEG2Text
+## Features
+- **64-channel EEG dataset** from 12 participants
+- **Two paradigms**: Imagined speech (audio) and silent reading
+- **Three model architectures**: EEGNet, NiceEEG, NetTraST
+- **Three evaluation protocols**: Within-subject, 5-fold CV, LOSO
+- **Comprehensive preprocessing** with MNE-Python
+- **Automated experiment tracking** with metrics and confusion matrices
 
-Step 2: Clone This Repository:
-git clone https://github.com/peytonmou/EEG-to-Text.git
-cd EEG-to-Text
+## Dataset
+- **Participants**: 12 healthy subjects
+- **Channels**: 64 EEG electrodes
+- **Tasks**: 
+  - Imagined speech (audio cues)
+  - Silent reading (text presentation)
+- **Classes**: 10 target words/phrases
+- **Sessions**: 2 per subject per condition
 
-Place the dataset folder in the same directory as this repository:
-├── EEG-to-Text
-│   ├── main.py
-│   ├── data.py
-│   ├── models.py
-│   └── metrics.py
-└── EEG2Text   ← dataset folder
+## Models Implemented
 
-Step 3: Run the main script:
-python main.py
+| Model | Description | Key Features |
+|-------|-------------|--------------|
+| **EEGNet** | Compact CNN for EEG | Depthwise/Separable conv, 27.05% accuracy |
+| **NiceEEG** | Contrastive learning | Projection head, instance discrimination |
+| **NetTraST** | Transformer-based | Multi-head attention, positional encoding |
 
-Inside main.py, you can configure the experiment by selecting:
-Data Types: Silent Reading; Imagined Speech
-Models: EEGNet; NetTraST; NiceEEG
-Evaluation Settings: Within-Subject; Cross-Validation; LOSO (Leave-One-Subject-Out)
+## Evaluation Protocols
+1. **Within-Subject**: Train/test on same subject
+2. **5-Fold Cross-Validation**: Subject-independent folds
+3. **LOSO**: Leave-One-Subject-Out for generalization
 
-Requirements:
-Python ≥ 3.8
-PyTorch
-NumPy
-SciPy
-scikit-learn
+## Installation
 
-Install dependencies:
-pip install torch numpy scipy scikit-learn
-Silent Reading is more challenging due to weaker semantic-related neural signals.
+```bash
+git clone https://github.com/yourusername/eeg-text-decoding.git
+cd eeg-text-decoding
 
-The code supports reproducible evaluation under three experimental protocols.
+# Install dependencies
+pip install torch torchvision torchaudio
+pip install mne numpy pandas scikit-learn
+pip install pyyaml tqdm matplotlib
+
+# For model-specific requirements
+pip install einops tensorboard
