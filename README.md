@@ -7,13 +7,13 @@
 ## Overview
 This project develops deep learning models for decoding imagined speech and silent reading from 64-channel EEG signals. We collected and processed neural signals from 12 participants to evaluate multiple architectures under different validation schemes.
 
-**Key Achievement**: EEGNet achieved **27.05% test accuracy** on 10-class imagined speech decoding (12.5× above chance level of 10%).
+**Key Achievement**: EEGNet achieved **27.05% test accuracy** on 10-class imagined speech decoding 
 
 ## Features
 - **64-channel EEG dataset** from 12 participants
 - **Two paradigms**: Imagined speech (audio) and silent reading
 - **Three model architectures**: EEGNet, NiceEEG, NetTraST
-- **Three evaluation protocols**: Within-subject, 5-fold CV, LOSO
+- **Three evaluation protocols**: Within-subject, 5-fold Cross-Validation, LOSO (Leave one subject out)
 - **Comprehensive preprocessing** with MNE-Python
 - **Automated experiment tracking** with metrics and confusion matrices
 
@@ -21,16 +21,15 @@ This project develops deep learning models for decoding imagined speech and sile
 - **Participants**: 12 healthy subjects
 - **Channels**: 64 EEG electrodes
 - **Tasks**: 
-  - Imagined speech (audio cues)
+  - Imagined speech (audio prompts)
   - Silent reading (text presentation)
-- **Classes**: 10 target words/phrases
-- **Sessions**: 2 per subject per condition
+- **Classes**: 10 words
 
 ## Models Implemented
 
 | Model | Description | Key Features |
 |-------|-------------|--------------|
-| **EEGNet** | Compact CNN for EEG | Depthwise/Separable conv, 27.05% accuracy |
+| **EEGNet** | Compact CNN for EEG | Depthwise/Separable conv |
 | **NiceEEG** | Contrastive learning | Projection head, instance discrimination |
 | **NetTraST** | Transformer-based | Multi-head attention, positional encoding |
 
