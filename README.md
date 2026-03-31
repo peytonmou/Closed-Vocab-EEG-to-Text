@@ -41,8 +41,8 @@ This project develops deep learning models for decoding imagined speech and sile
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/eeg-text-decoding.git
-cd eeg-text-decoding
+git clone https://github.com/peytonmou/Closed-Vocab-EEG-to-Text.git
+cd Closed-Vocab-EEG-to-Text
 
 # Install dependencies
 pip install torch torchvision torchaudio
